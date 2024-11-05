@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 const useWeather = () => {
   const [weatherData, setWeatherData] = useState({
     location: "",
@@ -33,8 +33,12 @@ const useWeather = () => {
 
       //fetch call
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${import.meta.env.VITE_WEATHER_API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${
+          import.meta.env.VITE_WEATHER_API_KEY
+        }&units=metric`
       );
+
+      //if no proper response comes then throw error
       if (!response.ok) {
         //response.ok gets from the fetch call
         const errorMessage = `Fetching weather data failed:${response.status}`;
@@ -42,6 +46,7 @@ const useWeather = () => {
       }
 
       const data = await response.json(); //getting the data out from the fetch promise
+
       //mapped weather data by specific selection with optional chaining
       const updatedWeatherData = {
         ...weatherData,
@@ -57,6 +62,10 @@ const useWeather = () => {
         longitude: longitude,
         latitude: latitude, //longitude and latitude are already coming from the fetchWeatherData's Parameter
       };
+
+      //setting the weather data with the updateWeatherData
+      setWeatherData(updatedWeatherData);
+
     } catch (err) {
       setError(err);
     } finally {
@@ -68,4 +77,24 @@ const useWeather = () => {
       });
     }
   };
+
+  //running the useEffect for only one time
+  useEffect(()=>{
+    setLoading({
+        loading:true,
+        message:"Finding location....."
+    });
+
+    navigator.geolocation.getCurrentPosition(function(position){
+        fetchWeatherData(position.coords.latitude,position.coords.longitude)
+    })
+
+  },[]);
+
+  return{
+    weatherData,error,loading
+  }
+
 };
+
+export default useWeather;
