@@ -5,9 +5,9 @@ const FavoriteProvider = ({children})=>{
     const [favorites,setFavorites] = useLocalStorage("favorites",[])
 
     const addToFavorites = (latitude,longitude,location)=>{
-        setFavorites(
+        setFavorites([
             ...favorites,
-            {latitude:latitude,longitude:longitude,location:location}
+            {latitude:latitude,longitude:longitude,location:location}]
         )
 
     }
