@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import HeartIcon from '../../assets/assets/heart.svg'
 export default function Favorite({onShow}){
     return (

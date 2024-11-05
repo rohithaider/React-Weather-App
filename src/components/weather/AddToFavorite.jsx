@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import HeartIcon from "../../assets/assets/heart.svg";
 import RedHeartIcon from "../../assets/assets/heart-red.svg";
 import { useContext, useState,useEffect } from "react";
