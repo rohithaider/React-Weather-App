@@ -4,15 +4,16 @@ import { LocationContext } from '../../context';
 import { getLocationByName} from '../../data/location-data';
 export default function Search(){
 	const [searchTerm,setSearchTerm ] = useState("");
-	const {setSelectedLocation} = useContext(LocationContext)
+	const {selectedLocation,setSelectedLocation} = useContext(LocationContext)
 	
 
 	function handleSubmit(e){
 		e.preventDefault();
-		console.log(searchTerm)
 		const fetchedLocation = getLocationByName(searchTerm)
-		console.log(fetchedLocation);
+
 		setSelectedLocation({...fetchedLocation})
+		
+		
 	}
     return (
         <form action="#" onSubmit={handleSubmit}>

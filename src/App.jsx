@@ -1,6 +1,6 @@
 import Header from "./components/header/Header";
 import WeatherBoard from "./components/weather/WeatherBoard";
-import { WeatherProvider,FavoriteProvider,LocationProvider } from "./provider";
+import { WeatherProvider,FavoriteProvider, LocationProvider} from "./provider";
 
 export default function App(){
     return (
@@ -8,6 +8,7 @@ export default function App(){
       <WeatherProvider>
         <FavoriteProvider>
           <LocationProvider>
+          
       <div className="grid place-items-center h-screen space-y-20">
       <Header/>
       <main>

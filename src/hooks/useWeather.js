@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext} from "react";
+import { LocationContext } from "../context";
 const useWeather = () => {
+
   const [weatherData, setWeatherData] = useState({
     location: "",
     climate: "",
@@ -21,6 +23,11 @@ const useWeather = () => {
   });
   //state for maintaining error
   const [error, setError] = useState(null);
+  const {selectedLocation} = useContext(LocationContext)
+  console.log(selectedLocation)
+
+  
+  
 
   //main function for api calling
 
