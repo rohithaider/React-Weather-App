@@ -1,3 +1,4 @@
+import SearchIcon from '../../assets/assets/search.svg'
 export default function Search(){
     return (
         <form action="#">
@@ -5,7 +6,7 @@ export default function Search(){
 						<input className="bg-transparent  placeholder:text-white text-white w-full text-xs md:text-base outline-none border-none"
 							type="search" placeholder="Search Location" required />
 						<button type="submit">
-							<img src="./assets/search.svg" />
+							<img src={SearchIcon}/>
 						</button>
 					</div>
 				</form>
